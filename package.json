@@ -1,0 +1,24 @@
+{
+  "name": "game-leaderboard-system-design",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turgayh/game-leaderboard-system-design.git"
+  },
+  "author": "Hakan Turgay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turgayh/game-leaderboard-system-design/issues"
+  },
+  "homepage": "https://github.com/turgayh/game-leaderboard-system-design#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5"
+  }
+}
