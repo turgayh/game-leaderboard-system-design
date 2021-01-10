@@ -1,20 +1,22 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
 
 
 // api routes
+app.get('/', (req, res) => {
+    return res.send('Hello world');
+});
+app.use('/user', require('./src/controller/user.controller'))
+
 
 // swagger docs route
 //app.use('/api-docs', require('./helper/swagger'));
 
-// global error handler
-//app.use(errorHandler);
+
 
 // start server
 app.listen(process.argv[2] || process.env.PORT || 4500, () => {

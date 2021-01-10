@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "unit-test": "jest --watch --runInBand ./tests/unit",
+    "integration-test": "jest  ./tests/integration"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,16 @@
   },
   "homepage": "https://github.com/turgayh/game-leaderboard-system-design#readme",
   "dependencies": {
-    "express": "^4.17.1",
     "body-parser": "^1.19.0",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "i18n-iso-countries": "^6.4.0",
+    "mongoose": "^5.11.8",
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.3",
+    "jest": "^26.6.3",
+    "mongodb-memory-server": "^6.9.2"
   }
 }
