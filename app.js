@@ -7,11 +7,8 @@ app.use(bodyParser.json());
 
 
 // api routes
-app.get('/', (req, res) => {
-    return res.send('Hello world');
-});
-app.use('/user', require('./src/controller/user.controller'))
-
+app.use('/user', require('./src/controller/user.controller'));
+app.use('/score', require('./src/controller/score.controller'));
 
 // swagger docs route
 //app.use('/api-docs', require('./helper/swagger'));

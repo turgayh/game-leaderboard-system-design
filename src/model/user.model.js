@@ -5,8 +5,8 @@ const schema = new Schema({
     user_id: { type: String, unique: true, required: true, index: true },
     display_name: { type: String, unique: false, },
     points: { type: Number, required: true, default: 0 },
-    country_iso_code: { type: String }
-
+    country_iso_code: { type: String },
+    rank: { type: Number }
 });
 
 

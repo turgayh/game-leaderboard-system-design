@@ -2,16 +2,15 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/submit', register);
-
+router.post('/submit', scoreSubmit);
+const { submitScore } = require('../service/score.service')
 
 module.exports = router;
 
-const userService = require('../service/user.service');
 
 function scoreSubmit(req, res, next) {
-    userService.createUser(req.body, req.get('origin'))
-        .then(() => res.json({ message: 'success' }))
+    submitScore(req.body, req.get('origin'))
+        .then((response) => res.json(response))
         .catch(() => res.json({ message: 'failue' }))
 }
 
