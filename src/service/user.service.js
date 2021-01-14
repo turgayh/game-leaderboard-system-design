@@ -1,11 +1,9 @@
-
-
-module.exports = { createUser, getProfile }
 const config = require('../../config/config.json');
 const db = require('../helper/mongoDb');
 const { createUUID } = require('../helper/common-function')
-const { updateUserScore, getUserRank, getUserScore } = require('./redis.service');
+const { addUserToRedis, getUserRank, getUserScore } = require('./redis.service');
 const redis = require("redis");
+const { getCountryName, isoCountries } = require('../helper/country-code');
 const client = redis.createClient();
 
 client.on("error", function (error) {
@@ -13,26 +11,14 @@ client.on("error", function (error) {
 });
 
 
-const addUserToRedis = (id) => new Promise(function (resolve, reject) {
-    client.zadd("global", Math.floor(Math.random() * 9999), id);
-    client.zrank("global", id, function (err, index) {
-        if (!err)
-            resolve(index + 1) // return rank
-        else
-            resolve(-1) //
-        reject('error');
-    });
-})
-
-
-
-
 
 /// Create new user
 async function createUser(params, origin) {
     params.user_id = createUUID();
-    return addUserToRedis(params.user_id).then((rank) => {
+    params.country = params.country.toUpperCase();
+    return addUserToRedis(params.user_id, params.country).then((rank) => {
         params.rank = rank;
+        params.country = getCountryName(params.country);
         let user = new db.User(params);
         return user.save()
     }).catch((err) => console.log(err));
@@ -41,11 +27,17 @@ async function createUser(params, origin) {
 
 async function getProfile(id, origin) {
     let profile = await db.User.findOne({ user_id: id })
-    let rank = await getUserRank(id, 'global').then((rank) => { return rank });
-    let score = await getUserScore(id).then((score) => { return score });
+    let rank = await getUserRank(id, isoCountries.GLOBAL).then((resRank) => { return resRank });
+    let score = await getUserScore(id).then((resScore) => { return resScore });
     profile.rank = rank;
     profile.points = score;
     return profile;
 }
 
+async function getUserDisplayName(id) {
+    let user = await db.User.findOne({ user_id: id });
 
+}
+
+
+module.exports = { createUser, getProfile, getUserDisplayName }
