@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan')
+const errorHandler = require('./src/middleware/error-handle');
 
 const cluster = require('cluster');
 const cpuCount = 2;
@@ -16,6 +17,9 @@ app.use(morgan('combined'))
 app.use('/user', require('./src/controller/user.controller'));
 app.use('/score', require('./src/controller/score.controller'));
 app.use('/leaderboard', require('./src/controller/leaderboard.controller'));
+
+// global error handler
+app.use(errorHandler);
 
 app.listen(process.argv[2] || process.env.PORT || 4500, () => {
     console.log(`Uygulama ayakta ve ${process.argv[2] || process.env.PORT || 4500} nolu porttan dinlemede.`);

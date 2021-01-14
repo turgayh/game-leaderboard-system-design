@@ -41,16 +41,19 @@ const updateUserScore = (id, newScore) => new Promise(function (resolve, reject)
 
 // New user add to global and country specific redis sorted set and return global rank
 const addUserToRedis = (id, country_code) => new Promise(function (resolve, reject) {
-    let countryName = getCountryName(country_code);
-    client.zadd(isoCountries.GLOBAL, 0, id);
-    client.zadd(countryName, 0, id);
-    client.zrank(isoCountries.GLOBAL, id, function (err, index) {
-        if (!err)
-            resolve(index + 1) // return rank
-        else
-            resolve(-1) //
-        reject('error');
-    });
+    try {
+        let countryName = getCountryName(country_code);
+        client.zadd(isoCountries.GLOBAL, 0, id);
+        client.zadd(countryName, 0, id);
+        client.zrank(isoCountries.GLOBAL, id, function (err, index) {
+            if (!err)
+                resolve(index + 1) // return rank
+            else
+                resolve(-1) //
+        });
+    } catch (err) {
+        reject(err);
+    }
 })
 
 

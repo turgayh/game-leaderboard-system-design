@@ -10,6 +10,6 @@ module.exports = router;
 function scoreSubmit(req, res, next) {
     globalLeaderboard(req.body, req.get('origin'))
         .then((response) => res.json(response))
-        .catch(() => res.status(500).json({ message: 'failue' }))
+        .catch(next)
 }
 

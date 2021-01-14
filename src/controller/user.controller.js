@@ -16,12 +16,12 @@ const userService = require('../service/user.service');
 function createUser(req, res, next) {
     userService.createUser(req.body, req.get('origin'))
         .then((user) => res.json(user))
-        .catch(() => res.json({ message: 'failue' }))
+        .catch(next)
 }
 
 
 function getProfile(req, res, next) {
     userService.getProfile(req.params['id'], req.get('origin'))
         .then((profile) => res.json(profile))
-        .catch(() => res.json({ message: 'failue' }))
+        .catch(next)
 }

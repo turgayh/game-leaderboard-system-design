@@ -12,6 +12,6 @@ module.exports = router;
 function scoreSubmit(req, res, next) {
     submitScore(req.body, req.get('origin'))
         .then((response) => res.json(response))
-        .catch(() => res.status(300).json({ message: 'failue' }))
+        .catch(next)
 }
 
