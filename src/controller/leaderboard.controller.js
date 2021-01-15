@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { globalLeaderboard } = require('../service/leaderboard.service')
+const Joi = require('joi');
+const validateRequest = require('../middleware/validate-request');
+
 
 router.get('/', scoreSubmit);
 

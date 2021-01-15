@@ -14,9 +14,9 @@ client.on("error", function (error) {
 
 /// Create new user
 async function createUser(params, origin) {
-    params.user_id = createUUID();
+    let user_id = createUUID();
     params.country = params.country.toUpperCase();
-    return addUserToRedis(params.user_id, params.country).then((rank) => {
+    return addUserToRedis(user_id, params.country).then((rank) => {
         params.rank = rank;
         params.country = getCountryName(params.country);
         let user = new db.User(params);
