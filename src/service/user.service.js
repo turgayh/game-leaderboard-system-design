@@ -15,6 +15,7 @@ client.on("error", function (error) {
 /// Create new user
 async function createUser(params, origin) {
     let user_id = createUUID();
+    params.user_id = user_id;
     params.country = params.country.toUpperCase();
     return addUserToRedis(user_id, params.country).then((rank) => {
         params.rank = rank;
@@ -22,7 +23,6 @@ async function createUser(params, origin) {
         let user = new db.User(params);
         return user.save()
     }).catch((err) => console.log(err));
-
 }
 
 async function getProfile(id, origin) {

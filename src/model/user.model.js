@@ -17,6 +17,7 @@ schema.set('toJSON', {
         // remove these props when object is serialized
         delete ret._id;
         delete ret.id;
+        delete ret.country;
     }
 });
 

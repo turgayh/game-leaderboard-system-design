@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "unit-test": "jest --watch --runInBand ./tests/unit",
+    "unit-test": "jest --watch --runInBand --collectCoverage ./tests/unit ",
     "integration-test": "jest  ./tests/integration",
     "debug": "npx nodemon ./app.js",
     "coverage": "jest --collectCoverage"

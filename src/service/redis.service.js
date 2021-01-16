@@ -62,19 +62,25 @@ const getLeaderboard = (country_code, size) => new Promise(function (resolve, re
     let setName;
     if (country_code === undefined || country_code === "")
         setName = isoCountries.GLOBAL
-    else
+    else {
+        country_code = country_code.toUpperCase();
         setName = getCountryName(country_code);
+    }
     size = size === undefined || size === "" ? 100 : size;
     let result = []
     client.zrevrange(setName, 0, size, 'withscores', function (err, leaderboard) {
         for (let index = 0; index < leaderboard.length; index = index + 2) {
-            result.push({ key: leaderboard[index], points: leaderboard[index + 1] })
+            result.push({ user_id: leaderboard[index], points: leaderboard[index + 1] })
         }
-        if (!err)
+        if (!err) {
             resolve(result)
+        }
         else reject(err);
     });
 })
+
+
+
 
 module.exports = {
     getUserRank,
