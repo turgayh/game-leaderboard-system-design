@@ -3,9 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan')
 const errorHandler = require('./src/middleware/error-handle');
-
-const cluster = require('cluster');
-const cpuCount = 2;
+const { createOrUpdateUser } = require('./src/helper/dynamoDb');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,10 +20,10 @@ app.use('/leaderboard', require('./src/controller/leaderboard.controller'));
 app.use(errorHandler);
 
 app.listen(process.argv[2] || process.env.PORT || 4500, () => {
-    console.log(`Uygulama ayakta ve ${process.argv[2] || process.env.PORT || 4500} nolu porttan dinlemede.`);
+  console.log(`Uygulama ayakta ve ${process.argv[2] || process.env.PORT || 4500} nolu porttan dinlemede.`);
 });
 
-
+createOrUpdateUser("Users", { points: 123, display_name: "hello" });
 // if (cluster.isMaster) {
 //     console.log('Master PID: ' + process.pid);
 //     for (var i = 0; i < cpuCount; i++) {

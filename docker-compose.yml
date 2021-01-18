@@ -1,16 +1,12 @@
 version: '3.7'
 
-services:
-  dev_rabbitmq:
-    image: rabbitmq:3-management
-    container_name: mongorr_rabbitmq
-    restart: on-failure
+services:  
+  dynamodb-local:
+    image: amazon/dynamodb-local
+    container_name: dynamodb-local
     ports:
-      - "15672:15672"
-      - "5672:5672"
-    volumes:
-      - rabbitmq_data_volume:/var/lib/rabbitmq/mnesia
-      
+      - "8000:8000"
+          
   dev_redis:
     image: redis
     container_name: mongorr_redis
@@ -35,6 +31,5 @@ services:
       - 27017:27017
 
 volumes:
-  rabbitmq_data_volume:
   redis_data_volume:
   mongodb_data_volume:
