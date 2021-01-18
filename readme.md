@@ -8,10 +8,10 @@
  [GET]  : /leaderboard/{country_iso_code}
 ```
 
-#####   /user/create  
+####   /user/create  
 To create and initialize a player in the game.
 
-| request                                                      | response                    |
-| ------------------------------------------------------------ | --------------------------- |
-| display_name: **String** , require: **true**,unique:**true** | ![](/doc/images/create.png) |
-|                                                              |                             |
+| request                                                            | response                    |
+| ------------------------------------------------------------------ | --------------------------- |
+| display_name: **String** , require: **true**,unique:**true** <br/> | ![](/doc/images/create.png) |
+|                                                                    |                             |
