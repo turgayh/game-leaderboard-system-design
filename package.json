@@ -7,7 +7,8 @@
     "unit-test": "jest --watch --runInBand --collectCoverage ./tests/unit ",
     "integration-test": "jest  ./tests/integration",
     "debug": "npx nodemon ./app.js",
-    "coverage": "jest --collectCoverage"
+    "coverage": "jest --collectCoverage",
+    "create-table": "node ./src/helper/dynamo-db/create-table.js"
   },
   "repository": {
     "type": "git",

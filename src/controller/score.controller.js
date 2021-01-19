@@ -14,7 +14,8 @@ module.exports = router;
 function scoreSubmitValidation(req, res, next) {
     const validate = Joi.object({
         user_id: Joi.required(),
-        point: Joi.required()
+        points: Joi.required(),
+        country: Joi.required()
     });
     validateRequest(req, next, validate);
 }

@@ -1,5 +1,5 @@
 var AWS = require("aws-sdk");
-var { createUUID } = require('../helper/common-function')
+var { createUUID } = require('../common-function')
 
 // Localhost dynamodb
 AWS.config.update({

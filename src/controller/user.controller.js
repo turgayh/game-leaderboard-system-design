@@ -18,7 +18,8 @@ const userService = require('../service/user.service');
 function createUserValidation(req, res, next) {
     const validate = Joi.object({
         display_name: Joi.required(),
-        country: Joi.required()
+        country: Joi.required(),
+
     });
     validateRequest(req, next, validate);
 }

@@ -14,19 +14,16 @@ async function createUser(params) {
     return addUserToRedis(user_id, params.country).then((rank) => {
         params.rank = rank;
         params.country = getCountryName(params.country);
-        return createOrUpdateUser(params).then((res) => { return res });
-    }).catch((err) => console.log(err));
+        return createOrUpdateUser(params);
+    }).catch((err) => { return err });
 }
 
+// get information about user
 async function getProfile(id) {
-    let profile;
-    getUserById(id).then((res) => { profile = res });
-    console.log(profile);
+    let profile = await getUserById(id);
     let rank = await getUserRank(id, isoCountries.GLOBAL).then((resRank) => { return resRank });
     let score = await getUserScore(id).then((resScore) => { return resScore });
-    profile.rank = rank;
-    profile.points = score;
-    return profile;
+    return { user_id: profile.user_id, display_name: profile.display_name, points: score, rank: rank };
 }
 
 
