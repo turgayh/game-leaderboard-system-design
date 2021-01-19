@@ -9,6 +9,7 @@ AWS.config.update({
 });
 var docClient = new AWS.DynamoDB.DocumentClient();
 
+
 const updateUserScore = async (id, score, country) => {
     if (score === undefined || score === "")
         score = 0;
@@ -35,10 +36,9 @@ const updateUserScore = async (id, score, country) => {
     }
 }
 
-const createOrUpdateUser = async (data) => {
-    let id = createUUID();
-    if (data.points === undefined || data.points === "")
-        data.points = 0;
+const createOrUpdateUser = async (data, id) => {
+    data.points = 0;
+
     var params = {
         TableName: "Users",
         Item: {
@@ -47,14 +47,13 @@ const createOrUpdateUser = async (data) => {
             "points": data.points,
             "update_time": Date.now(),
             "country": data.country,
-            "rank": data.rank,
         }
     };
     try {
         await docClient.put(params).promise()
         return { user_id: id, display_name: data.display_name, points: data.points, rank: data.rank, country: data.country };
     } catch (error) {
-        return err;
+        return { isError: true, message: error };
     }
 
 }
@@ -70,7 +69,7 @@ async function getUserById(id) {
         };
         return (await docClient.get(params).promise()).Item
     } catch (error) {
-        return error;
+        return false;
     }
 }
 

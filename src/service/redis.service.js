@@ -5,7 +5,7 @@ const { getCountryName, isoCountries } = require('../helper/country-code')
 
 /// Get user rank in Redis
 const getUserRank = (id, rankingArea) => new Promise(function (resolve, reject) {
-    client.zrank(rankingArea, id, function (err, index) {
+    client.zrevrank(rankingArea, id, function (err, index) {
         if (!err)
             resolve(index + 1) // return rank
         else

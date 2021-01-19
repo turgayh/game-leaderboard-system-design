@@ -14,7 +14,7 @@ async function createUser(params) {
     return addUserToRedis(user_id, params.country).then((rank) => {
         params.rank = rank;
         params.country = getCountryName(params.country);
-        return createOrUpdateUser(params);
+        return createOrUpdateUser(params, user_id);
     }).catch((err) => { return err });
 }
 
