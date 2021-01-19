@@ -7,6 +7,19 @@
         {
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
+            "name": "dynamo service",
+            "program": "${workspaceFolder}/src/service/dynamo.service.js",
+            "request": "launch",
+            "restart": true,
+            "runtimeExecutable": "nodemon",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
             "name": "nodemon",
             "program": "${workspaceFolder}/app.js",
             "request": "launch",

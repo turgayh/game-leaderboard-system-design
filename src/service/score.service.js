@@ -1,13 +1,12 @@
 const redis = require("redis");
 const client = redis.createClient();
 const { isoCountries } = require('../helper/country-code')
-const db = require('../helper/mongoDb');
-
+const { getUserById } = require('../service/dynamo.service')
 async function submitScore(params, origin) {
     try {
         let countryName;
-        await db.User.find({ user_id: params.user_id }, function (err, value) {
-            countryName = value[0].country;
+        await getUserById(params.user_id).then((res) => {
+            countryName = res.country;
         })
         client.zadd(countryName, params.point, params.user_id);
         client.zadd(isoCountries.GLOBAL, params.point, params.user_id);

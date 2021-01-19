@@ -3,7 +3,7 @@ var { createUUID } = require('../helper/common-function')
 
 // Localhost dynamodb
 AWS.config.update({
-    region: "macera",
+    region: "local",
     endpoint: "http://localhost:8000"
 });
 

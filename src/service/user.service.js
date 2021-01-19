@@ -1,32 +1,27 @@
-const config = require('../../config/config.json');
-const db = require('../helper/mongoDb');
 const { createUUID } = require('../helper/common-function')
 const { addUserToRedis, getUserRank, getUserScore } = require('./redis.service');
-const redis = require("redis");
 const { getCountryName, isoCountries } = require('../helper/country-code');
-const client = redis.createClient();
+const { createOrUpdateUser, getUserById } = require('./dynamo.service')
 
-client.on("error", function (error) {
-    console.error(error);
-});
 
 
 
 /// Create new user
-async function createUser(params, origin) {
+async function createUser(params) {
     let user_id = createUUID();
     params.user_id = user_id;
     params.country = params.country.toUpperCase();
     return addUserToRedis(user_id, params.country).then((rank) => {
         params.rank = rank;
         params.country = getCountryName(params.country);
-        let user = new db.User(params);
-        return user.save()
+        return createOrUpdateUser(params).then((res) => { return res });
     }).catch((err) => console.log(err));
 }
 
-async function getProfile(id, origin) {
-    let profile = await db.User.findOne({ user_id: id })
+async function getProfile(id) {
+    let profile;
+    getUserById(id).then((res) => { profile = res });
+    console.log(profile);
     let rank = await getUserRank(id, isoCountries.GLOBAL).then((resRank) => { return resRank });
     let score = await getUserScore(id).then((resScore) => { return resScore });
     profile.rank = rank;
@@ -34,10 +29,7 @@ async function getProfile(id, origin) {
     return profile;
 }
 
-async function getUserDisplayName(id) {
-    let user = await db.User.findOne({ user_id: id });
-
-}
 
 
-module.exports = { createUser, getProfile, getUserDisplayName }
+
+module.exports = { createUser, getProfile }

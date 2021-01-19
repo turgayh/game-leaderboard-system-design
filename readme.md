@@ -14,4 +14,6 @@ To create and initialize a player in the game.
 | request                                                                                                                         | response                    |
 | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | - display_name: **String** , require: **true**,unique:**true** <br/> - country:  **String** , require: **true**,unique:**true** | ![](/doc/images/create.png) |
-|                                                                                                                                 |                             |
+
+- Example request and response
+
