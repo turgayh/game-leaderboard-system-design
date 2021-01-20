@@ -4,7 +4,7 @@ var { createUUID } = require('../common-function')
 // Localhost dynamodb
 AWS.config.update({
     region: "local",
-    endpoint: "http://localhost:8000"
+    endpoint: "http://104.131.93.70:8000"
 });
 
 //Create Users 
