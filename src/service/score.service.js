@@ -1,5 +1,4 @@
-const redis = require("redis");
-const client = redis.createClient();
+const { redisClient } = require('../helper/redis-db')
 const { isoCountries, getCountryName } = require('../helper/country-code')
 const { updateUserScore } = require('../service/dynamo.service')
 
@@ -10,8 +9,8 @@ async function submitScore(params) {
         let isSuccess = await updateUserScore(params.user_id, params.points, countryName);
         //Update score in redis
         if (isSuccess) {
-            client.zadd(countryName, params.points, params.user_id);
-            client.zadd(isoCountries.GLOBAL, params.points, params.user_id);
+            redisClient.zadd(countryName, params.points, params.user_id);
+            redisClient.zadd(isoCountries.GLOBAL, params.points, params.user_id);
         } else {
             return { isError: true, message: "user not found!" }
         }

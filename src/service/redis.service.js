@@ -1,11 +1,9 @@
-const redis = require("redis");
-const client = redis.createClient();
 const { getCountryName, isoCountries } = require('../helper/country-code')
-
+const {redisClient} = require('../helper/redis-db')
 
 /// Get user rank in Redis
 const getUserRank = (id, rankingArea) => new Promise(function (resolve, reject) {
-    client.zrevrank(rankingArea, id, function (err, index) {
+    redisClient.zrevrank(rankingArea, id, function (err, index) {
         if (!err)
             resolve(index + 1) // return rank
         else
@@ -17,7 +15,7 @@ const getUserRank = (id, rankingArea) => new Promise(function (resolve, reject) 
 /// Get user score in Redis
 const getUserScore = (id) => new Promise(function (resolve, reject) {
 
-    client.zscore(isoCountries.GLOBAL, id, function (err, score) {
+    redisClient.zscore(isoCountries.GLOBAL, id, function (err, score) {
         if (!err)
             resolve(score) // return rank
         else
@@ -29,7 +27,7 @@ const getUserScore = (id) => new Promise(function (resolve, reject) {
 //TODO
 // Update user score in Redis
 const updateUserScore = (id, newScore) => new Promise(function (resolve, reject) {
-    client.zadd(isoCountries.GLOBAL, id, newScore, function (err, score) {
+    redisClient.zadd(isoCountries.GLOBAL, id, newScore, function (err, score) {
         if (!err)
             resolve(score) // return rank
         else
@@ -43,9 +41,9 @@ const updateUserScore = (id, newScore) => new Promise(function (resolve, reject)
 const addUserToRedis = (id, country_code) => new Promise(function (resolve, reject) {
     try {
         let countryName = getCountryName(country_code);
-        client.zadd(isoCountries.GLOBAL, 0, id);
-        client.zadd(countryName, 0, id);
-        client.zrank(isoCountries.GLOBAL, id, function (err, index) {
+        redisClient.zadd(isoCountries.GLOBAL, 0, id);
+        redisClient.zadd(countryName, 0, id);
+        redisClient.zrank(isoCountries.GLOBAL, id, function (err, index) {
             if (!err)
                 resolve(index + 1) // return rank
             else
@@ -68,7 +66,7 @@ const getLeaderboard = (country_code, size) => new Promise(function (resolve, re
     }
     size = size === undefined || size === "" ? 100 : size;
     let result = []
-    client.zrevrange(setName, 0, size, 'withscores', function (err, leaderboard) {
+    redisClient.zrevrange(setName, 0, size, 'withscores', function (err, leaderboard) {
         for (let index = 0; index < leaderboard.length; index = index + 2) {
             result.push({ user_id: leaderboard[index], points: leaderboard[index + 1] })
         }
