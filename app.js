@@ -9,6 +9,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('combined'))
 
+//health
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 // api routes
 app.use('/user', require('./src/controller/user.controller'));
