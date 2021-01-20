@@ -21,15 +21,16 @@
   },
   "homepage": "https://github.com/turgayh/game-leaderboard-system-design#readme",
   "dependencies": {
+    "aws-sdk": "^2.176.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "i18n-iso-countries": "^6.4.0",
     "joi": "^17.3.0",
     "morgan": "^1.10.0",
-    "aws-sdk": "^2.176.0",
-    "uuid": "^3.2.1",
-    "redis": "^3.0.2"
+    "redis": "^3.0.2",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "jest": "^26.6.3"

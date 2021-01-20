@@ -1,3 +1,4 @@
 {
-    "connectionString": "mongodb://localhost:27017/gjg"
+    "connectionString": "mongodb://localhost:27017/gjg",
+    "redisConnectionString": "rediss://localhost:25061"
 }
