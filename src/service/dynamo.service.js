@@ -1,11 +1,9 @@
 var AWS = require("aws-sdk");
-var { createUUID } = require('../helper/common-function');
-const { getCountryName } = require("../helper/country-code");
 
 // Localhost dynamodb
 AWS.config.update({
-    region: "macera",
-    endpoint: "http://localhost:8000"
+    region: "local",
+    endpoint: process.env.dynamoDbEndPoint
 });
 var docClient = new AWS.DynamoDB.DocumentClient();
 

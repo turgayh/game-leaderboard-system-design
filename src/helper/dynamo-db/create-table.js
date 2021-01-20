@@ -1,10 +1,10 @@
 var AWS = require("aws-sdk");
-var { createUUID } = require('../common-function')
+require('dotenv').config();
 
 // Localhost dynamodb
 AWS.config.update({
     region: "local",
-    endpoint: "http://104.131.93.70:8000"
+    endpoint: process.env.dynamoDbEndPoint
 });
 
 //Create Users 
