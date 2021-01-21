@@ -4,7 +4,7 @@
     + [Development](#development)
     + [Deployment](#deployment)
   * [API Guide](#api-guide)
-    + [/user/create](#-user-create)
+    + [/user/create](#/user-create)
     + [/user/profile/{user_id}](#-user-profile--user-id-)
     + [/score/submit](#-score-submit)
     + [/leaderboard](#-leaderboard)
