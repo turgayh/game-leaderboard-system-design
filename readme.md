@@ -14,11 +14,9 @@
 ![](/doc/images/design.png)
 
 <br/>
-<br/>
 
 ### Tech Stack
 
-<br/>
 <br/>
 
 #### Development
@@ -42,6 +40,11 @@ DigitalOcean Droplet (Ubuntu server)
 <br/>
 <br/>
 
+
+### API Guide 
+
+<br/>
+<br/>
 
 ####   /user/create  
 <br/>
