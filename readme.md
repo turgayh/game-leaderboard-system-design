@@ -16,6 +16,33 @@
 <br/>
 <br/>
 
+### Tech Stack
+
+<br/>
+<br/>
+
+#### Development
+```bash
+nodejs
+docker
+dynamodb
+redis
+jmeter
+jest
+```
+
+#### Deploy
+```bash
+DigitalOcean Redis
+DigitalOcean NodeJS Cluster
+DigitalOcean Droplet (Ubuntu server)
+
+```
+<br/>
+<br/>
+<br/>
+
+
 ####   /user/create  
 <br/>
 To create and initialize a player in the game.
