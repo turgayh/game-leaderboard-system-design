@@ -9,7 +9,15 @@
  [GET]  : /leaderboard/{country_iso_code}
 ```
 
+### System Design 
+
+![](/doc/images/design.png)
+
+<br/>
+<br/>
+
 ####   /user/create  
+<br/>
 To create and initialize a player in the game.
 
 | request                                                                                                                         | response                    |
@@ -19,8 +27,13 @@ To create and initialize a player in the game.
 - Example request and response
 
 ![](/doc/images/create-ex.png)
+<br/>
+<br/>
 
 #### /user/profile/{user_id}
+
+<br/>
+<br/>
 
 To get user information
 
@@ -35,14 +48,23 @@ To get user information
 
 #### /score/submit
 
+<br/>
+<br/>
+
 | request                                                                                                                                                        | response                   |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | - display_name: **String** , require: **true**,unique:**true** <br/> - points:  **Number** , require: **true** <br/> - country: **String** , require: **true** | ![](/doc/images/score.png) |
 
 - Example request and response
 ![](/doc/images/score-ex.png)
+<br/>
+<br/>
+
 
 #### /leaderboard
+
+<br/>
+<br/>
 
 To get global leaderboard  
 **Note**: default return Top 100 list
@@ -60,6 +82,9 @@ To get global leaderboard
 
 #### /leaderboard/{country_iso_code}
 
+<br/>
+<br/>
+
 To get specific country's leaderboard 
 **Note**: default return Top 100 list
 
@@ -67,6 +92,8 @@ To get specific country's leaderboard
 | --------------------------------------- | ---------------------------------------- |
 | - size: **Number** , require: **false** | ![](/doc/images/leaderboard-country.png) |
 
+<br/>
+<br/>
 
 - Example request and response
 ![](/doc/images/leaderboard-country-ex.png)
