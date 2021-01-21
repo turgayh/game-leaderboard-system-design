@@ -29,7 +29,7 @@ jmeter
 jest
 ```
 
-#### Deploy
+#### Deployment
 ```bash
 DigitalOcean Redis
 DigitalOcean NodeJS Cluster
