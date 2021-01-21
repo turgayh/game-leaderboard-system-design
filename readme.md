@@ -1,4 +1,5 @@
 ## API 
+**Host: http://144.126.248.117** 
 
 ```bash
  [POST] : /user/create
