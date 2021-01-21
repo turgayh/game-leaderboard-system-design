@@ -11,9 +11,9 @@
 ####   /user/create  
 To create and initialize a player in the game.
 
-| request                                                                                                                         | response                    |
-| ------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| - display_name: **String** , require: **true**,unique:**true** <br/> - country:  **String** , require: **true**,unique:**true** | ![](/doc/images/create.png) |
+| request                                                                                                                                                                                             | response                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| - <span style="color:purple">display_name</span>: **String** , require: **true**,unique:**true** <br/> - <span style="color:purple">country</span>:  **String** , require: **true**,unique:**true** | ![](/doc/images/create.png) |
 
 - Example request and response
 
