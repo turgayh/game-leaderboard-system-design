@@ -17,19 +17,6 @@ services:
     volumes:
       - redis_data_volume:/data
 
-  dev_mongodb:
-    image: mongo:latest
-    container_name: "mongorr_mongodb"
-    environment:
-      - MONGODB_USER="user" 
-      - MONGODB_PASS="pass"
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
-    volumes:
-      - mongodb_data_volume:/data/db
-    ports:
-      - 27017:27017
-
 volumes:
   redis_data_volume:
   mongodb_data_volume:
