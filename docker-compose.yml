@@ -6,10 +6,12 @@ services:
     container_name: dynamodb-local
     ports:
       - "8000:8000"
-          
+    volumes:
+      - dynamodb_data_volume:/data
+      
   dev_redis:
     image: redis
-    container_name: mongorr_redis
+    container_name: redis-local
     restart: on-failure
     command: redis-server --appendonly yes
     ports:
@@ -19,4 +21,4 @@ services:
 
 volumes:
   redis_data_volume:
-  mongodb_data_volume:
+  dynamodb_data_volume:
