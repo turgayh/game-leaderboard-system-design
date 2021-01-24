@@ -1,4 +1,0 @@
-{
-    "__MONGO_URI__": "mongodb://localhost:27017",
-    "__MONGO_DB_NAME__": "test"
-}
