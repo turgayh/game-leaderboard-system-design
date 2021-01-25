@@ -1,4 +1,3 @@
-const config = require('../config/global.json');
 
 describe('insert', () => {
     it("", () => {
